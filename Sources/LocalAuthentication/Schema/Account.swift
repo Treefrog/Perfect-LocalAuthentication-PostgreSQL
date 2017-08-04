@@ -185,12 +185,14 @@ public class Account: PostgresStORM {
 }
 
 public enum AccountType {
-	case provisional, standard, admin, inactive
+	case provisional, standard, admin, manager, inactive
 
 	public static func from(_ str: String) -> AccountType {
 		switch str {
 		case "admin":
-			return .admin
+            return .admin
+        case "manager":
+            return .manager
 		case "standard":
 			return .standard
 		case "inactive":
