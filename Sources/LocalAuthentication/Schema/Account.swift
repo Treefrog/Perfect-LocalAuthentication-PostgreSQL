@@ -160,7 +160,7 @@ public class Account: PostgresStORM {
         }
     }
     
-    public static func listUsers(region : Stirng = "", company: String = "") -> [[String: Any]] {
+    public static func listUsers(region : String = "", company: String = "") -> [[String: Any]] {
         var users = [[String: Any]]()
         let t = Account()
         let cursor = StORMCursor(limit: 9999999,offset: 0)
