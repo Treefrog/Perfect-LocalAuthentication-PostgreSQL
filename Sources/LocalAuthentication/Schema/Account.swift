@@ -160,17 +160,27 @@ public class Account: PostgresStORM {
         }
     }
     
-    public static func listUsers() -> [[String: Any]] {
+    public static func listUsers(region : Stirng = "", company: String = "") -> [[String: Any]] {
         var users = [[String: Any]]()
         let t = Account()
         let cursor = StORMCursor(limit: 9999999,offset: 0)
-        try? t.select(
-            columns: [],
-            whereclause: "true",
-            params: [],
-            orderby: ["username"],
-            cursor: cursor
-        )
+        if region.isEmpty {
+            try? t.select(
+                columns: [],
+                whereclause: "true",
+                params: [],
+                orderby: ["username"],
+                cursor: cursor
+            )
+        } else {
+            try? t.select(
+                columns: [],
+                whereclause: "region = $1",
+                params: [region],
+                orderby: ["username"],
+                cursor: cursor
+            )
+        }
         
         
         for row in t.rows() {
