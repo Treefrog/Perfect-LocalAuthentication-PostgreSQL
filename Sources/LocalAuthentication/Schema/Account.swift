@@ -175,8 +175,8 @@ public class Account: PostgresStORM {
         } else {
             try? t.select(
                 columns: [],
-                whereclause: "region = $1",
-                params: [region],
+                whereclause: "region = $1 AND usertype != $2",
+                params: [region, "manager"],
                 orderby: ["username"],
                 cursor: cursor
             )
@@ -192,6 +192,8 @@ public class Account: PostgresStORM {
             r["detail"] = row.detail
             r["source"] = row.source
             r["remoteid"] = row.remoteid
+            r["region"] = row.region
+            r["company"] = row.company
             users.append(r)
         }
         return users
