@@ -202,6 +202,11 @@ public class Account: PostgresStORM {
     
 }
 
+public func getName() -> String {
+    let name = "\(detail["firstname"] as? String ?? "") \(detail["lastname"] as? String ?? "")"
+    return name
+}
+
 public enum AccountType {
     case provisional, standard, admin, manager, inactive
     
