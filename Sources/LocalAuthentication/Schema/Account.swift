@@ -23,6 +23,7 @@ public class Account: PostgresStORM {
     public var detail			= [String:Any]()
     public var company      = ""
     public var region       = ""
+    public var archived     = false
     
     let _r = URandom()
     
@@ -40,6 +41,7 @@ public class Account: PostgresStORM {
         }
         company         = this.data["company"] as? String           ?? ""
         region          = this.data["region"] as? String            ?? ""
+        archived        = this.data["archived"] as? Bool            ?? false
     }
     
     public func rows() -> [Account] {
@@ -76,6 +78,7 @@ public class Account: PostgresStORM {
         passvalidation = _r.secureToken
         source = s
         remoteid = rid
+        archived = false
     }
     
     public init(validation: String) {
