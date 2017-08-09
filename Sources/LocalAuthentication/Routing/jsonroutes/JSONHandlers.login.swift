@@ -42,7 +42,7 @@ extension LocalAuthJSONHandlers {
 			if let postBody = request.postBodyString, !postBody.isEmpty {
 				do {
 					let postBodyJSON = try postBody.jsonDecode() as? [String: String] ?? [String: String]()
-					if let u = postBodyJSON["username"], !u.isEmpty,
+					if let u = postBodyJSON["username"]?.lowercased(), !u.isEmpty,
 						let p = postBodyJSON["password"], !p.isEmpty {
 
 						do{

@@ -23,7 +23,7 @@ extension LocalAuthWebHandlers {
 			var context: [String : Any] = ["title": "Perfect Authentication Server"]
 			context["csrfToken"] = request.session?.data["csrf"] as? String ?? ""
 
-			if let u = request.param(name: "username"), !(u as String).isEmpty,
+			if let u = request.param(name: "username")?.lowercased(), !(u as String).isEmpty,
 				let p = request.param(name: "password"), !(p as String).isEmpty {
 				do {
 					let acc = try Account.login(u, p)

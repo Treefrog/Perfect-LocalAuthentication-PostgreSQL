@@ -28,8 +28,8 @@ extension LocalAuthJSONHandlers {
 			if let postBody = request.postBodyString, !postBody.isEmpty {
 				do {
 					let postBodyJSON = try postBody.jsonDecode() as? [String: String] ?? [String: String]()
-					if let u = postBodyJSON["username"], !u.isEmpty,
-						let e = postBodyJSON["email"], !e.isEmpty {
+					if let u = postBodyJSON["username"]?.lowercased(), !u.isEmpty,
+                        let e = postBodyJSON["email"]?.lowercased(), !e.isEmpty {
 						let err = Account.register(u, e, .provisional, baseURL: AuthenticationVariables.baseURL)
 						if err != .noError {
 							LocalAuthHandlers.error(request, response, error: "Registration Error: \(err)", code: .badRequest)

@@ -35,8 +35,8 @@ extension LocalAuthWebHandlers {
 			if let i = request.session?.userid, !i.isEmpty { response.redirect(path: "/") }
 			var context: [String : Any] = ["title": "Perfect Authentication Server"]
 
-			if let u = request.param(name: "username"), !(u as String).isEmpty,
-				let e = request.param(name: "email"), !(e as String).isEmpty {
+			if let u = request.param(name: "username")?.lowercased(), !(u as String).isEmpty,
+				let e = request.param(name: "email")?.lowercased(), !(e as String).isEmpty {
 				let err = Account.register(u, e, .provisional, baseURL: AuthenticationVariables.baseURL)
 				if err != .noError {
 					print(err)
