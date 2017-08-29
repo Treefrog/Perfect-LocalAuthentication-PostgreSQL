@@ -39,7 +39,7 @@ extension LocalAuthWebHandlers {
 			} else {
 				context["msg_title"] = "Login Error."
 				context["msg_body"] = "Username or password not supplied"
-				template = "views/login"
+				template = "views/loginError"
 			}
 			response.render(template: template, context: context)
 			response.completed()
